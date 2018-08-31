@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Grid, Paper, Typography, List, ListItem, ListItemText, ListIte } from '@material-ui/core';
+import { Grid, Paper, Typography, List, ListItem, ListItemText } from '@material-ui/core';
 
 const styles = {
     Paper: {
@@ -19,7 +19,7 @@ const styles = {
     }
 }
 
-export default ({ organizedExercises, selectedCategory }) => {
+export default ({ organizedExercises, selectedCategory, selectedExercise, handleExerciseSelected }) => {
     return (
         <Grid container>
             {/* the left pane */}
@@ -39,7 +39,7 @@ export default ({ organizedExercises, selectedCategory }) => {
                                     <List component="ul">
                                         {exerciseArrays.map(exerciseObject => {
                                             return (
-                                                <ListItem button>
+                                                <ListItem onClick={() =>  handleExerciseSelected(exerciseObject.id)} button>
                                                     <ListItemText primary={exerciseObject.title} />
                                                 </ListItem>
                                             )
@@ -61,7 +61,7 @@ export default ({ organizedExercises, selectedCategory }) => {
                                     {/* now we map over the exercise group when it matches and return them all as a list */}
                                     {exerciseArrays.map(exerciseObject => {
                                         return (
-                                            <ListItem button>
+                                            <ListItem onClick={() =>  handleExerciseSelected(exerciseObject.id)} button>
                                                 <ListItemText primary={exerciseObject.title} />
                                             </ListItem>
                                         )

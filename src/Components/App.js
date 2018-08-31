@@ -23,16 +23,25 @@ class App extends Component {
         })
     }
 
+    handleExerciseSelected = (exerciseId) => {
+        const currentExercise = exercises.map((exercise) => {
+            if (exerciseId === exercise.id) this.setState({ selectedExercise: exercise });
+        })
+    }
+
     render(){
         const organizedExercises = this.getExercisesByMuscles();
         const { selectedCategory } = this.state;
+        const { selectedExercise } = this.state;
 
         return(
             <Fragment>
                     <Header />
                     <Exercises 
                         organizedExercises={organizedExercises}
-                        selectedCategory={selectedCategory}    
+                        selectedCategory={selectedCategory}   
+                        selectedExercise={selectedExercise}
+                        handleExerciseSelected={this.handleExerciseSelected}
                     />
                     <Footer 
                         muscles={muscles}
