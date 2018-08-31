@@ -9,9 +9,10 @@ import { Menu } from '@material-ui/icons';
 
 export default (props) => {
     return (
-        <AppBar>
+        <AppBar position="static">
             <Toolbar>
-                <Typography variant="headline">
+                <Typography variant="headline"
+                color="inherit" gutterBottom>
                     Exercise Data
                 </Typography>
             </Toolbar>
