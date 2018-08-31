@@ -27,6 +27,7 @@ export default ({ organizedExercises, selectedCategory }) => {
             <Grid item sm>
                 <Paper style={styles.Paper}>
                     {organizedExercises.map(([exerciseGroup, exerciseArrays]) => {
+                        if (!selectedCategory){
                         return (
                             <Fragment>
                                 <Typography 
@@ -47,6 +48,30 @@ export default ({ organizedExercises, selectedCategory }) => {
                                 </List>
                             </Fragment>
                         )
+                    } else if (selectedCategory === exerciseGroup) {
+                        return (
+                            <Fragment>
+                                <Typography 
+                                    variant='headline'
+                                    style={styles.headlines}
+                                >
+                                    {exerciseGroup}
+                                </Typography>
+
+                                <List component='ul'>
+                                    {/* now we map over the exercise group when it matches and return them all as a list */}
+                                    {exerciseArrays.map(exerciseObject => {
+                                        return (
+                                            <ListItem>
+                                                <ListItemText primary={exerciseObject.title} />
+                                            </ListItem>
+                                        )
+                                    })}
+                                </List>
+                            </Fragment>
+
+                        )
+                    }
                     })}
                 </Paper>
             </Grid>
@@ -56,7 +81,6 @@ export default ({ organizedExercises, selectedCategory }) => {
                 <Paper style={styles.Paper}>
                     {/* here if the selected category is undefined, we'll return the intro message... */}
                     {/* ...otherwise we'll return the data related to that category */}
-                    {!selectedCategory ? 
                         <Fragment>
                             <Typography variant="display2">
                                 Welcome!
@@ -66,36 +90,6 @@ export default ({ organizedExercises, selectedCategory }) => {
                                 Please select an exercise on the left.
                             </Typography>
                         </Fragment>
-                        :
-                        <Fragment>
-                            {/* here we'll map over the array of exercises and load all the exercises that it holds in index 1 */}
-                            {organizedExercises.map(([exerciseGroup, exerciseArrays]) => {
-                                if (exerciseGroup === selectedCategory){
-                                    return (
-                                        <Fragment>
-                                            <Typography variant='display2' style={styles.headlines}>
-                                                {exerciseGroup}
-                                            </Typography>
-                                            {/* now we'll map over the array of exercises and list all of them */}
-                                            {exerciseArrays.map(exerciseType => {
-                                                return (
-                                                    <Fragment>
-                                                        <Typography variant='title' style={styles.subheading}>
-                                                            {exerciseType.title}:
-                                                        </Typography>
-                                                        <Typography variant='body1'>
-                                                            {exerciseType.description}
-                                                        </Typography>
-                                                    </Fragment>
-                                                )
-                                            })}
-
-                                        </Fragment>
-                                    )
-                                }
-                            })}
-                        </Fragment>
-                    }
                 </Paper>
             </Grid>
         </Grid>
