@@ -8,16 +8,19 @@ export default ({ muscles, selectedCategory, handleCategorySelected}) => {
     // otherwise, we're going to default to index 0
     const indexOfCurrentTab =  selectedCategory ? muscles.findIndex(muscleGroup => muscleGroup === selectedCategory) + 1 : 0;
 
+    // Here we're passing a ternary into the handleCategorySelected function that's essentially... 
+    // ...saying if the index is 0, set an empty value, otherwise set the category to the muscles array at the current index - 1...
+    // ...and we will be provided the index value by the onChange handler inside of the <Tabs> component
+    const selectCurrentIndex = (tabIndex) => tabIndex === 0 ? '' : muscles[tabIndex - 1];
+
     return (
         <Paper>
             <Tabs
                 value={indexOfCurrentTab}
                 // here we're calling onChange, which gets the event object and the index of the selected tab by default...
-                // ...then, we're passing a ternary into the handleCategorySelected function that's essentially... 
-                // ...saying if the index is 0, set an empty value, otherwise set the category to the muscles array at the current index - 1.
+                // ...we're then calling handleCategorySelected and passing in the result of selectCurrentIndex
                 onChange={(event, index) => {
-                    handleCategorySelected(index === 0 ? '' : muscles[index - 1]);
-                    muscles[index - 1];
+                    handleCategorySelected(selectCurrentIndex(index));
                 }}
                 indicatorColor='primary'
                 textColor='primary'
