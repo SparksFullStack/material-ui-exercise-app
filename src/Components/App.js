@@ -17,14 +17,23 @@ class App extends Component {
         }, {}))
     }
 
+    handleCategorySelected = (category) => {
+        this.setState({
+            selectedCategory: category
+        })
+    }
+
     render(){
         const organizedExercises = this.getExercisesByMuscles();
+        const { selectedCategory } = this.state;
         return(
             <Fragment>
                     <Header />
                     <Exercises organizedExercises={organizedExercises}/>
                     <Footer 
                         muscles={muscles}
+                        selectedCategory={selectedCategory}
+                        handleCategorySelected={this.handleCategorySelected}
                     />
             </Fragment>
         )

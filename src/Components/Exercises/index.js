@@ -7,15 +7,21 @@ const styles = {
         marginTop: 10,
         marginBottom: 10,
         marginLeft: 8,
-        marginRight: 8
+        marginRight: 8,
+        height: 500,
+        overflowY: 'auto'
     },
     headlines: {
         textTransform: 'capitalize'
+    },
+    subheading: {
+        marginTop: 20
     }
 }
 
 export default ({ organizedExercises }) => (
     <Grid container>
+        {/* the left pane */}
         <Grid item sm>
             <Paper style={styles.Paper}>
                 {organizedExercises.map(([exerciseGroup, exerciseArrays]) => {
@@ -28,7 +34,7 @@ export default ({ organizedExercises }) => (
                                 {exerciseGroup}
                             </Typography>
 
-                            <List component="nav">
+                            <List component="ul">
                                 {exerciseArrays.map(exerciseObject => {
                                     return (
                                         <ListItem>
@@ -42,13 +48,15 @@ export default ({ organizedExercises }) => (
                 })}
             </Paper>
         </Grid>
+
+        {/* the right pane */}
         <Grid item sm>
             <Paper style={styles.Paper}>
                 <Typography variant="display1">
                     Welcome!
                 </Typography>
 
-                <Typography variant="subheading">
+                <Typography variant="subheading" style={styles.subheading}>
                     Please select an exercise on the left.
                 </Typography>
             </Paper>
