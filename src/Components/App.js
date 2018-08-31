@@ -1,23 +1,31 @@
 import React, { Component, Fragment } from 'react';
 import { Header, Footer } from './Layouts';
 import Exercises from './Exercises';
-import { AppBar } from '@material-ui/core';
+import { muscles, exercises } from '../store';
 
 class App extends Component {
     state = {
-        currentTab: 0
+        exercises
     }
 
-    changeCurrentTab = (tabIndex) => {
-        this.setState({ currentTab: tabIndex });
+    getExercisesByMuscles = () => {
+        return Object.entries(this.state.exercises.reduce((exercises, currentExercise) => {
+            const { muscles } = currentExercise;
+            exercises[muscles] = exercises[muscles] ? [...exercises[muscles], currentExercise] : [currentExercise];
+
+            return exercises;
+        }, {}))
     }
 
     render(){
+        const organizedExercises = this.getExercisesByMuscles();
         return(
             <Fragment>
                     <Header />
-                    <Exercises />
-                    <Footer currentTab={this.state.currentTab} changeCurrentTab={this.changeCurrentTab}/>
+                    <Exercises organizedExercises={organizedExercises}/>
+                    <Footer 
+                        muscles={muscles}
+                    />
             </Fragment>
         )
     }
