@@ -24,7 +24,7 @@ class App extends Component {
     }
 
     handleExerciseSelected = (exerciseId) => {
-        const currentExercise = exercises.map((exercise) => {
+        exercises.map((exercise) => {
             if (exerciseId === exercise.id) this.setState({ selectedExercise: exercise });
         })
     }

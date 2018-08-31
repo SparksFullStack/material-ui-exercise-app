@@ -80,15 +80,28 @@ export default ({ organizedExercises, selectedCategory, selectedExercise, handle
                 <Paper style={styles.Paper}>
                     {/* here if the selected category is undefined, we'll return the intro message... */}
                     {/* ...otherwise we'll return the data related to that category */}
-                        <Fragment>
-                            <Typography variant="display2">
-                                Welcome!
-                            </Typography>
+                        {!selectedExercise ? (
+                            <Fragment>
+                                <Typography variant="display2">
+                                    Welcome!
+                                </Typography>
 
-                            <Typography variant="subheading" style={styles.subheading}>
-                                Please select an exercise on the left.
-                            </Typography>
-                        </Fragment>
+                                <Typography variant="subheading" style={styles.subheading}>
+                                    Please select an exercise on the left.
+                                </Typography>
+                            </Fragment>
+                        ) : (
+                            <Fragment>
+                                <Typography variant="display2">
+                                    {selectedExercise.title}
+                                </Typography>
+
+                                <Typography variant="subheading" style={styles.subheading}>
+                                    {selectedExercise.description}
+                                </Typography>
+                            </Fragment>
+                        )
+                    }
                 </Paper>
             </Grid>
         </Grid>
