@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Header, Footer } from './Layouts';
-import Exercises from './Exercises';
+import Exercises from './Exercises/Exercises';
 import { muscles, exercises } from '../store';
 
 class App extends Component {
@@ -30,7 +30,10 @@ class App extends Component {
         return(
             <Fragment>
                     <Header />
-                    <Exercises organizedExercises={organizedExercises}/>
+                    <Exercises 
+                        organizedExercises={organizedExercises}
+                        selectedCategory={selectedCategory}    
+                    />
                     <Footer 
                         muscles={muscles}
                         selectedCategory={selectedCategory}
