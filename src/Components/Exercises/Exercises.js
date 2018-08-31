@@ -20,7 +20,6 @@ const styles = {
 }
 
 export default ({ organizedExercises, selectedCategory }) => {
-    console.log(organizedExercises)
     return (
         <Grid container>
             {/* the left pane */}
@@ -28,26 +27,26 @@ export default ({ organizedExercises, selectedCategory }) => {
                 <Paper style={styles.Paper}>
                     {organizedExercises.map(([exerciseGroup, exerciseArrays]) => {
                         if (!selectedCategory){
-                        return (
-                            <Fragment>
-                                <Typography 
-                                    variant="headline"
-                                    style={styles.headlines}
-                                >
-                                    {exerciseGroup}
-                                </Typography>
+                            return (
+                                <Fragment>
+                                    <Typography 
+                                        variant="headline"
+                                        style={styles.headlines}
+                                    >
+                                        {exerciseGroup}
+                                    </Typography>
 
-                                <List component="ul">
-                                    {exerciseArrays.map(exerciseObject => {
-                                        return (
-                                            <ListItem>
-                                                <ListItemText primary={exerciseObject.title} />
-                                            </ListItem>
-                                        )
-                                    })}
-                                </List>
-                            </Fragment>
-                        )
+                                    <List component="ul">
+                                        {exerciseArrays.map(exerciseObject => {
+                                            return (
+                                                <ListItem button>
+                                                    <ListItemText primary={exerciseObject.title} />
+                                                </ListItem>
+                                            )
+                                        })}
+                                    </List>
+                                </Fragment>
+                            )
                     } else if (selectedCategory === exerciseGroup) {
                         return (
                             <Fragment>
@@ -62,7 +61,7 @@ export default ({ organizedExercises, selectedCategory }) => {
                                     {/* now we map over the exercise group when it matches and return them all as a list */}
                                     {exerciseArrays.map(exerciseObject => {
                                         return (
-                                            <ListItem>
+                                            <ListItem button>
                                                 <ListItemText primary={exerciseObject.title} />
                                             </ListItem>
                                         )
