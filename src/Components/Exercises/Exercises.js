@@ -20,7 +20,7 @@ const styles = {
 }
 
 // here we're setting the default values for 'selectedExericse' so that we don't have to have a large ternary returning a seperate set of code by default
-export default ({ organizedExercises, selectedCategory, selectedExercise = { id: 0, title: 'Welcome!', description: 'Please select an exercise from the list on the left.'}, handleExerciseSelected }) => {
+export default ({ organizedExercises, selectedCategory, selectedExercise = { id: undefined, title: 'Welcome!', description: 'Please select an exercise from the list on the left.'}, handleExerciseSelected }) => {
     return (
         <Grid container>
             {/* the left pane */}
@@ -29,7 +29,7 @@ export default ({ organizedExercises, selectedCategory, selectedExercise = { id:
                     {organizedExercises.map(([exerciseGroup, exerciseArrays]) => {
                         if (!selectedCategory){
                             return (
-                                <Fragment>
+                                <Fragment key={exerciseGroup}>
                                     <Typography 
                                         variant="headline"
                                         style={styles.headlines}
@@ -40,7 +40,11 @@ export default ({ organizedExercises, selectedCategory, selectedExercise = { id:
                                     <List component="ul">
                                         {exerciseArrays.map(exerciseObject => {
                                             return (
-                                                <ListItem onClick={() =>  handleExerciseSelected(exerciseObject.id)} button>
+                                                <ListItem
+                                                    key={exerciseObject.id} 
+                                                    onClick={() =>  handleExerciseSelected(exerciseObject.id)} 
+                                                    button
+                                                >
                                                     <ListItemText primary={exerciseObject.title} />
                                                 </ListItem>
                                             )
@@ -62,7 +66,11 @@ export default ({ organizedExercises, selectedCategory, selectedExercise = { id:
                                     {/* now we map over the exercise group when it matches and return them all as a list */}
                                     {exerciseArrays.map(exerciseObject => {
                                         return (
-                                            <ListItem onClick={() =>  handleExerciseSelected(exerciseObject.id)} button>
+                                            <ListItem 
+                                                key={exerciseObject.id}
+                                                onClick={() =>  handleExerciseSelected(exerciseObject.id)} 
+                                                button
+                                            >
                                                 <ListItemText primary={exerciseObject.title} />
                                             </ListItem>
                                         )

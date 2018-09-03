@@ -29,7 +29,7 @@ export default ({ muscles, selectedCategory, handleCategorySelected}) => {
 
                 <Tab label="All" />
                 {muscles.map(muscleGroup => {
-                    return <Tab label={muscleGroup} />
+                    return <Tab key={muscleGroup} label={muscleGroup} />
                 })}
             </Tabs>
         </Paper>
