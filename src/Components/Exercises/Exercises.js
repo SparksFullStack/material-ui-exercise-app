@@ -19,7 +19,8 @@ const styles = {
     }
 }
 
-export default ({ organizedExercises, selectedCategory, selectedExercise, handleExerciseSelected }) => {
+// here we're setting the default values for 'selectedExericse' so that we don't have to have a large ternary returning a seperate set of code by default
+export default ({ organizedExercises, selectedCategory, selectedExercise = { id: 0, title: 'Welcome!', description: 'Please select an exercise from the list on the left.'}, handleExerciseSelected }) => {
     return (
         <Grid container>
             {/* the left pane */}
@@ -78,31 +79,18 @@ export default ({ organizedExercises, selectedCategory, selectedExercise, handle
             {/* the right pane */}
             <Grid item sm>
                 <Paper style={styles.Paper}>
-                    {/* here if the selected category is undefined, we'll return the intro message... */}
-                    {/* ...otherwise we'll return the data related to that category */}
-                        {!selectedExercise ? (
-                            <Fragment>
-                                <Typography variant="display2">
-                                    Welcome!
-                                </Typography>
+                    <Fragment>
+                        <Typography variant="display2">
+                            {selectedExercise.title}
+                        </Typography>
 
-                                <Typography variant="subheading" style={styles.subheading}>
-                                    Please select an exercise on the left.
-                                </Typography>
-                            </Fragment>
-                        ) : (
-                            <Fragment>
-                                <Typography variant="display2">
-                                    {selectedExercise.title}
-                                </Typography>
-
-                                <Typography variant="subheading" style={styles.subheading}>
-                                    {selectedExercise.description}
-                                </Typography>
-                            </Fragment>
-                        )
-                    }
+                        <Typography variant="subheading" style={styles.subheading}>
+                            {selectedExercise.description}
+                        </Typography>
+                    </Fragment>
                 </Paper>
             </Grid>
         </Grid>
     )}
+
+

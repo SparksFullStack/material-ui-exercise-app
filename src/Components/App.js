@@ -28,17 +28,14 @@ class App extends Component {
             // ...current props rather than just passing an object
         exercises.map((exercise) => {
             if (exerciseId === exercise.id) this.setState((prevState, currentProps) => {
-                return {
-                    selectedExercise: exercise
-                }
+                return { selectedExercise: exercise }
             });
         })
     }
 
     render(){
         const organizedExercises = this.getExercisesByMuscles();
-        const { selectedCategory } = this.state;
-        const { selectedExercise } = this.state;
+        const { selectedCategory, selectedExercise } = this.state;
 
         return(
             <Fragment>
