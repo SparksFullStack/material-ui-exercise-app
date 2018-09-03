@@ -24,8 +24,14 @@ class App extends Component {
     }
 
     handleExerciseSelected = (exerciseId) => {
+            // this is ultilizing the alternative form of setState() that passes a callback with the previous state and the...
+            // ...current props rather than just passing an object
         exercises.map((exercise) => {
-            if (exerciseId === exercise.id) this.setState({ selectedExercise: exercise });
+            if (exerciseId === exercise.id) this.setState((prevState, currentProps) => {
+                return {
+                    selectedExercise: exercise
+                }
+            });
         })
     }
 
