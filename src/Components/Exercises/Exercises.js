@@ -77,7 +77,6 @@ export default ({ organizedExercises, selectedCategory, selectedExercise = { id:
                                     })}
                                 </List>
                             </Fragment>
-
                         )
                     }
                     })}
