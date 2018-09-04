@@ -34,10 +34,17 @@ class App extends Component {
     }
 
     // this method will be called whenever a new exercise is added to our store
-    onCreate = (exercise) => {
+    // * Note that here we're actually updating the exercises in our state, not the ones in the store
+    onExerciseCreate = (exercise) => {
         const newExercise = Object.assign({ id: exercise.title.toLowerCase() }, exercise);
-        exercises.push(newExercise);
-        console.log(exercises);
+        this.setState((prevState, props) => {
+            return {
+                exercises: [
+                    ...prevState.exercises,
+                    newExercise
+                ]
+            }
+        })
     }
 
     render(){
@@ -48,7 +55,7 @@ class App extends Component {
             <Fragment>
                     <Header 
                         muscles={muscles}
-                        onCreate={this.onCreate}
+                        onExerciseCreate={this.onExerciseCreate}
                     />
                     <Exercises 
                         organizedExercises={organizedExercises}
