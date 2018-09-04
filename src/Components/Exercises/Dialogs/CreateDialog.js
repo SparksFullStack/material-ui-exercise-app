@@ -62,14 +62,14 @@ class CreateDialog extends React.Component {
     // this function submits the added exercise data whenever the 'Create' button is clicked...
     // ...it also zeroes out the exercise object in the state and closes the Dialog
     handleSubmit = () => {
-        const { exercise } = this.state;
+        const { exerciseForm } = this.state;
         
         // calling the function to create the value in the store and passing the new exercise
-        this.props.onCreate(exercise);
+        this.props.onCreate(exerciseForm);
 
         // zeroing out the exercise object
         this.setState((prevState, currProps) => ({
-            exercise: {
+            exerciseForm: {
                 title: '',
                 description: '',
                 muscles: ''

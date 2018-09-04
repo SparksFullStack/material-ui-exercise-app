@@ -35,7 +35,9 @@ class App extends Component {
 
     // this method will be called whenever a new exercise is added to our store
     onCreate = (exercise) => {
-        console.log('butt stuff');
+        const newExercise = Object.assign({ id: exercise.title.toLowerCase() }, exercise);
+        exercises.push(newExercise);
+        console.log(exercises);
     }
 
     render(){
