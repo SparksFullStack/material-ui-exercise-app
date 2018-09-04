@@ -21,9 +21,11 @@ import { Add } from '@material-ui/icons';
 // here we're creating our 'styles' function that returns a style object...
 // ...the object's values will be injected into the component via 'withStyles'
 const styles = (theme) => {
+    // it seems like a best practice to name the keys of the styles after the components/elements...
+    // ...that they're going to style, like how we named 'FormControl' below
     return {
-        root: {
-            fontFamily: "Wingdings"
+        FormControl: {
+            width: 500
         }
     }
 }
@@ -58,8 +60,10 @@ class CreateDialog extends React.Component {
     }
 
     render(){
+        // here are all our destructured imports from the state as well as props...
+        // ...this includes our 'classes' object injected by 'withStyles'
         const { isDialogOpen, exerciseForm: { title, description, muscles } } = this.state,
-              { muscles: muscleCategories } = this.props;
+              { muscles: muscleCategories, classes } = this.props;
 
         return (
             <Fragment>
@@ -73,7 +77,7 @@ class CreateDialog extends React.Component {
                 </Button>
     
                 <Dialog open={isDialogOpen}>
-                    <DialogTitle id="form-dialog-title">
+                    <DialogTitle>
                         Create a New Exercise
                     </DialogTitle>
     
@@ -89,6 +93,7 @@ class CreateDialog extends React.Component {
                                 value={title}
                                 placeholder='Enter an exercise title...'
                                 margin='normal'
+                                className={classes.FormControl}
                             />
                             <br />
                             <FormControl>
@@ -102,11 +107,12 @@ class CreateDialog extends React.Component {
                                     // ...selected value from the dropdown is.
                                     value={muscles}
                                     onChange={this.handleUpdateForm('muscles')}
+                                    className={classes.FormControl}
                                 >
 
                                 {/* here we need to map over our muscle categories and then create a single <MenuItem> for each one */}
                                 {muscleCategories.map(category => 
-                                    <MenuItem value={category}>
+                                    <MenuItem key={category} value={category}>
                                         {category}
                                     </MenuItem>
                                 )}
@@ -121,6 +127,7 @@ class CreateDialog extends React.Component {
                                 margin='normal'
                                 multiline
                                 rows='4'
+                                className={classes.FormControl}
                             />
                         </form>
                     </DialogContent>
