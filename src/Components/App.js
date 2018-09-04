@@ -33,6 +33,11 @@ class App extends Component {
         })
     }
 
+    // this method will be called whenever a new exercise is added to our store
+    onCreate = (exercise) => {
+        console.log('butt stuff');
+    }
+
     render(){
         const organizedExercises = this.getExercisesByMuscles();
         const { selectedCategory, selectedExercise } = this.state;
@@ -41,6 +46,7 @@ class App extends Component {
             <Fragment>
                     <Header 
                         muscles={muscles}
+                        onCreate={this.onCreate}
                     />
                     <Exercises 
                         organizedExercises={organizedExercises}

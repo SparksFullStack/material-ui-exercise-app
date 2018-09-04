@@ -59,6 +59,27 @@ class CreateDialog extends React.Component {
          })
     }
 
+    // this function submits the added exercise data whenever the 'Create' button is clicked...
+    // ...it also zeroes out the exercise object in the state and closes the Dialog
+    handleSubmit = () => {
+        const { exercise } = this.state;
+        
+        // calling the function to create the value in the store and passing the new exercise
+        this.props.onCreate(exercise);
+
+        // zeroing out the exercise object
+        this.setState((prevState, currProps) => ({
+            exercise: {
+                title: '',
+                description: '',
+                muscles: ''
+            }
+        }))
+
+        // closing the dialog modal by calling our handleDialog method
+        this.handleDialog();
+    }
+
     render(){
         // here are all our destructured imports from the state as well as props...
         // ...this includes our 'classes' object injected by 'withStyles'
@@ -96,7 +117,7 @@ class CreateDialog extends React.Component {
                                 className={classes.FormControl}
                             />
                             <br />
-                            <FormControl>
+                            <FormControl className={classes.FormControl}>
                                 <InputLabel htmlFor='muscles'>
                                     Muscles
                                 </InputLabel>
@@ -107,7 +128,6 @@ class CreateDialog extends React.Component {
                                     // ...selected value from the dropdown is.
                                     value={muscles}
                                     onChange={this.handleUpdateForm('muscles')}
-                                    className={classes.FormControl}
                                 >
 
                                 {/* here we need to map over our muscle categories and then create a single <MenuItem> for each one */}
@@ -134,9 +154,7 @@ class CreateDialog extends React.Component {
     
                     <DialogActions>
                         <Button
-                            onClick={() => {
-                                this.handleDialog();
-                            }}
+                            onClick={this.handleSubmit}
                             color="primary"
                             variant="raised"
                         >
