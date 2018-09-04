@@ -67,17 +67,15 @@ class CreateDialog extends React.Component {
         // calling the function to create the value in the store and passing the new exercise
         this.props.onCreate(exerciseForm);
 
-        // zeroing out the exercise object
+        // zeroing out the exercise object and closing out the modal
         this.setState((prevState, currProps) => ({
+            isDialogOpen: false,
             exerciseForm: {
                 title: '',
                 description: '',
                 muscles: ''
             }
         }))
-
-        // closing the dialog modal by calling our handleDialog method
-        this.handleDialog();
     }
 
     render(){
