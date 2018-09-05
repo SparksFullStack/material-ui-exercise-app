@@ -9,12 +9,25 @@ class App extends Component {
     }
 
     getExercisesByMuscles = () => {
-        return Object.entries(this.state.exercises.reduce((exercises, currentExercise) => {
-            const { muscles } = currentExercise;
-            exercises[muscles] = exercises[muscles] ? [...exercises[muscles], currentExercise] : [currentExercise];
+        // * this function sets up an object with keys that are the muscle groups and...
+        // * ...values that are an empty array that will come to hold our exercises
+        const initialExercises = muscles.reduce((exercises, muscleGroup) => {
+            return {
+                ...exercises,
+                [muscleGroup]: []
+            }
+        }, {});
 
-            return exercises;
-        }, {}))
+        // * this function takes our object of the initial exercises and empty arrays and...
+        // * ...adds the exercises to the arrays
+        return Object.entries(this.state.exercises.reduce((exercisesObject, currentExercise) => {
+            const { muscles } = currentExercise;
+            exercisesObject[muscles].push(currentExercise);
+            return exercisesObject;
+        }, initialExercises))
+
+        // * this function returns an array of arrays. The first value of each array is the category...
+        // * ...as a string. The second is an array of objects where the objects are the exercises
     }
 
     handleCategorySelected = (category) => {
@@ -48,14 +61,14 @@ class App extends Component {
     }
 
     onDeleteExercise = (exerciseId) => {
+        // * this was my original way of removing an exercise
         // const exercises = this.state.exercises.filter(exercise => exercise.id !== exerciseId);
         // this.setState((prevState, currentProps) => {
         //     return { exercises }
         // })
 
-        this.setState(({ exercises }) => ({
-            exercises: exercises.filter(exercise => exercise.id !== exerciseId)
-        }))
+        // * this is the tutorial's way of removing an exercise
+        this.setState(({ exercises }) => ({ exercises: exercises.filter(exercise => exercise.id !== exerciseId) }))
     }
 
     render(){

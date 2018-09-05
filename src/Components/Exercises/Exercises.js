@@ -11,6 +11,7 @@ import {
 } from '@material-ui/core';
 import {
     Delete,
+    Edit,
 } from '@material-ui/icons';
 
 const styles = {
@@ -70,6 +71,9 @@ export default ({
                                                     <ListItemText primary={exerciseObject.title} />
 
                                                     <ListItemSecondaryAction>
+                                                        <IconButton onClick={() => onDeleteExercise(exerciseObject.id)}>
+                                                            <Edit />
+                                                        </IconButton>
                                                         <IconButton onClick={() => onDeleteExercise(exerciseObject.id)}>
                                                             <Delete />
                                                         </IconButton>
