@@ -48,12 +48,14 @@ class App extends Component {
     }
 
     onDeleteExercise = (exerciseId) => {
-        const newExerciseArray = this.state.exercises.filter(exercise => exercise.id !== exerciseId);
-        this.setState((prevState, currentProps) => {
-            return {
-                exercises: newExerciseArray,
-            }
-        })
+        // const exercises = this.state.exercises.filter(exercise => exercise.id !== exerciseId);
+        // this.setState((prevState, currentProps) => {
+        //     return { exercises }
+        // })
+
+        this.setState(({ exercises }) => ({
+            exercises: exercises.filter(exercise => exercise.id !== exerciseId)
+        }))
     }
 
     render(){
