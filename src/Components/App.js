@@ -47,10 +47,19 @@ class App extends Component {
         })
     }
 
+    onDeleteExercise = (exerciseId) => {
+        const newExerciseArray = this.state.exercises.filter(exercise => exercise.id !== exerciseId);
+        this.setState((prevState, currentProps) => {
+            return {
+                exercises: newExerciseArray,
+            }
+        })
+    }
+
     render(){
         const organizedExercises = this.getExercisesByMuscles();
         const { selectedCategory, selectedExercise } = this.state;
-
+        
         return(
             <Fragment>
                     <Header 
@@ -62,6 +71,7 @@ class App extends Component {
                         selectedCategory={selectedCategory}   
                         selectedExercise={selectedExercise}
                         handleExerciseSelected={this.handleExerciseSelected}
+                        onDeleteExercise={this.onDeleteExercise}
                     />
                     <Footer 
                         muscles={muscles}

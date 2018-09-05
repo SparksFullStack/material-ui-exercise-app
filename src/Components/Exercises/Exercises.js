@@ -1,5 +1,17 @@
 import React, { Fragment } from 'react';
-import { Grid, Paper, Typography, List, ListItem, ListItemText } from '@material-ui/core';
+import { 
+    Grid, 
+    Paper, 
+    Typography, 
+    List, 
+    ListItem, 
+    ListItemText,
+    ListItemSecondaryAction,
+    IconButton,
+} from '@material-ui/core';
+import {
+    Delete,
+} from '@material-ui/icons';
 
 const styles = {
     Paper: {
@@ -20,7 +32,17 @@ const styles = {
 }
 
 // here we're setting the default values for 'selectedExericse' so that we don't have to have a large ternary returning a seperate set of code by default
-export default ({ organizedExercises, selectedCategory, selectedExercise = { id: undefined, title: 'Welcome!', description: 'Please select an exercise from the list on the left.'}, handleExerciseSelected }) => {
+export default ({ 
+    organizedExercises, 
+    selectedCategory, 
+    selectedExercise = { 
+        id: undefined, 
+        title: 'Welcome!', 
+        description: 'Please select an exercise from the list on the left.'
+    }, 
+        handleExerciseSelected,
+        onDeleteExercise,
+    }) => {
     return (
         <Grid container>
             {/* the left pane */}
@@ -46,6 +68,12 @@ export default ({ organizedExercises, selectedCategory, selectedExercise = { id:
                                                     button
                                                 >
                                                     <ListItemText primary={exerciseObject.title} />
+
+                                                    <ListItemSecondaryAction>
+                                                        <IconButton onClick={() => onDeleteExercise(exerciseObject.id)}>
+                                                            <Delete />
+                                                        </IconButton>
+                                                    </ListItemSecondaryAction>
                                                 </ListItem>
                                             )
                                         })}
