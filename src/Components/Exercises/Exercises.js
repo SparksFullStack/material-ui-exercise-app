@@ -43,6 +43,7 @@ export default ({
     }, 
         handleExerciseSelected,
         onDeleteExercise,
+        onEditExercise,
     }) => {
     return (
         <Grid container>
@@ -71,7 +72,7 @@ export default ({
                                                     <ListItemText primary={exerciseObject.title} />
 
                                                     <ListItemSecondaryAction>
-                                                        <IconButton onClick={() => onDeleteExercise(exerciseObject.id)}>
+                                                        <IconButton onClick={() => onEditExercise(exerciseObject.id)}>
                                                             <Edit />
                                                         </IconButton>
                                                         <IconButton onClick={() => onDeleteExercise(exerciseObject.id)}>
