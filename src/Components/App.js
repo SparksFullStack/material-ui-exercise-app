@@ -53,6 +53,10 @@ class App extends Component {
     // this method will be called whenever a new exercise is added to our store
     // * Note that here we're actually updating the exercises in our state, not the ones in the store
     onExerciseCreate = (exercise) => {
+        // TODO: Validation
+        // if any of the properties on exercise are empty, render an alert...
+        // ...otherwise, set the state.
+
         const newExercise = Object.assign({ id: exercise.title.toLowerCase() }, exercise);
         this.setState((prevState, props) => {
             return {

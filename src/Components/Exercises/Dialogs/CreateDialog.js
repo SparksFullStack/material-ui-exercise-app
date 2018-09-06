@@ -57,6 +57,7 @@ class CreateDialog extends React.Component {
                         <Form 
                             onCreate={onCreate}
                             muscleCategories={muscles}
+                            handleDialog={this.handleDialog}
                         />
 
                     </DialogContent>

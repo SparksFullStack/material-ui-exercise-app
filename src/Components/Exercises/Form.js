@@ -51,18 +51,20 @@ class Form extends Component {
 
         // zeroing out the exercise object and closing out the modal
         this.setState((prevState, currProps) => ({
-            isDialogOpen: false,
             exerciseForm: {
                 title: '',
                 description: '',
                 muscles: ''
             }
         }))
+
+        this.props.handleDialog();
     }
     
     render() {
-        const { title, muscles, description } = this.state,
-              { classes, muscleCategories } = this.props;
+        const { exerciseForm: { title, muscles, description } } = this.state,
+        { classes, muscleCategories } = this.props;
+        console.log(muscles);
               
         return (
             <form>
