@@ -43,7 +43,9 @@ export default ({
     }, 
         handleExerciseSelected,
         onDeleteExercise,
-        onEditExercise,
+        handleSelectEdit,
+        editMode,
+        muscles
     }) => {
     return (
         <Grid container>
@@ -72,7 +74,7 @@ export default ({
                                                     <ListItemText primary={exerciseObject.title} />
 
                                                     <ListItemSecondaryAction>
-                                                        <IconButton onClick={() => onEditExercise(exerciseObject.id)}>
+                                                        <IconButton onClick={() => handleSelectEdit(exerciseObject.id)}>
                                                             <Edit />
                                                         </IconButton>
                                                         <IconButton onClick={() => onDeleteExercise(exerciseObject.id)}>
@@ -118,17 +120,23 @@ export default ({
 
             {/* the right pane */}
             <Grid item sm>
-                <Paper style={styles.Paper}>
+                { editMode ? 
+                    <h1>dickcheese</h1>
+                    :
                     <Fragment>
-                        <Typography variant="display2">
-                            {selectedExercise.title}
-                        </Typography>
+                        <Paper style={styles.Paper}>
+                            <Fragment>
+                                <Typography variant="display2">
+                                    {selectedExercise.title}
+                                </Typography>
 
-                        <Typography variant="subheading" style={styles.subheading}>
-                            {selectedExercise.description}
-                        </Typography>
+                                <Typography variant="subheading" style={styles.subheading}>
+                                    {selectedExercise.description}
+                                </Typography>
+                            </Fragment>
+                        </Paper> 
                     </Fragment>
-                </Paper>
+                }      
             </Grid>
         </Grid>
     )}

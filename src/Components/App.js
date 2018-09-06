@@ -75,7 +75,7 @@ class App extends Component {
         this.setState(({ exercises }) => ({ exercises: exercises.filter(exercise => exercise.id !== exerciseId) }))
     }
 
-    onEditExercise = (exerciseId) => {
+    handleSelectEdit = (exerciseId) => {
         // * this method sets the currently selected exercise as well as opening the edit dialog modal
         this.setState(({ exercises }) => {
             return {
@@ -87,7 +87,7 @@ class App extends Component {
 
     render(){
         const organizedExercises = this.getExercisesByMuscles();
-        const { selectedCategory, selectedExercise } = this.state;
+        const { selectedCategory, selectedExercise, editMode } = this.state;
         
         return(
             <Fragment>
@@ -101,7 +101,9 @@ class App extends Component {
                         selectedExercise={selectedExercise}
                         handleExerciseSelected={this.handleExerciseSelected}
                         onDeleteExercise={this.onDeleteExercise}
-                        onEditExercise={this.onEditExercise}
+                        handleSelectEdit={this.handleSelectEdit}
+                        editMode={editMode}
+                        muscles={muscles}
                     />
                     <Footer 
                         muscles={muscles}
