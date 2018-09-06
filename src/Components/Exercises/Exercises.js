@@ -8,6 +8,7 @@ import {
     ListItemText,
     ListItemSecondaryAction,
     IconButton,
+    TextField,
 } from '@material-ui/core';
 import {
     Delete,
@@ -121,7 +122,17 @@ export default ({
             {/* the right pane */}
             <Grid item sm>
                 { editMode ? 
-                    <h1>dickcheese</h1>
+                    <Fragment>
+                        <form>
+                            <TextField
+                                label='Title'
+                                value={selectedExercise.title}
+                            // * START HERE
+                            >
+                                
+                            </TextField>
+                        </form>
+                    </Fragment>
                     :
                     <Fragment>
                         <Paper style={styles.Paper}>
