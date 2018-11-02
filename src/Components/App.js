@@ -8,7 +8,7 @@ class App extends Component {
         exercises,
         selectedExercise: {
             title: "Welcome!",
-            description: "Please select an exercise on the left for more information."
+            description: "Please select an exercise from the list for more information."
         }
     }
 

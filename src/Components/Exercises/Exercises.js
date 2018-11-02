@@ -23,7 +23,7 @@ const styles = {
         marginLeft: 8,
         marginRight: 8,
         height: 500,
-        overflowY: 'auto'
+        overflowY: 'auto',
     },
     headlines: {
         textTransform: 'capitalize'
@@ -40,7 +40,7 @@ export default ({
     selectedExercise = { 
         id: undefined, 
         title: 'Welcome!', 
-        description: 'Please select an exercise from the list on the left.'
+        description: 'Please select an exercise from the list for more information.'
     }, 
         handleExerciseSelected,
         onDeleteExercise,
